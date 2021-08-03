@@ -1,0 +1,101 @@
+---
+title: "New EDS 212 Day 1"
+author: "Halina Do-Linh"
+date: "8/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+## This is a new heading
+
+### This is a smaller heading
+
+### **This is a BOLDED heading**
+
+#### *This is an italicized heading*
+
+##### Remember you can use the compass tool to switch to visual markdown editor, which is helpful if you forgot how to format things in code
+
+Superscript example: (2 - 5)^3^
+
+###### *Format superscript using ^ 3 ^ but with no spaces* 
+
+Subscript example: 25~ab~
+
+###### *Format subscript using ~ ab ~ but with no spaces*
+
+### This time I am going to insert a picture
+#### *Insert a picture using this syntax: ! [ alt text here ] ( path-to-image-here ). For the path to image, you just need to make sure you saved the picture you want to use to the right R folder that you have setup on your computer*
+
+![Silly doggo picture](silly-dog.jpg)
+
+## Time to add a code chunk
+```{r}
+
+W <- function(a, b, L) {
+  
+  a * (L ^ b)
+}
+
+# W is is the expected fish weight in g
+# a and b are species-dependent parameter values 
+# L is total fish length in cm
+
+```
+
+#### Find mass (g) for the Milkfish, Giant Trevally, and the Great Barracuda
+```{r}
+
+milkfish <- W(a = 0.0905, b = 2.52, L = 60)
+
+giant_treve <- W(a = 0.0353, b = 3.05, L = 60)
+
+barr <- W(a = 0.0181, b = 3.27, L = 60)
+
+```
+
+#### Mark and store fish length using sequence function
+```{r}
+
+fish_length <- seq(from = 0, to = 200, by = 1)
+
+```
+
+#### Estimate weight for giant barracudas along the range
+```{r}
+
+barracuda_weight <- W(a = 0.0181,
+                     b = 3.27,
+                     L = fish_length)
+
+# This style of coding is called vertical coding, and is best for readability
+
+```
+
+#### Bind the weights and estimated barracuda lengths into a single data frame
+```{r}
+
+barracuda_df <- data.frame(fish_length, barracuda_weight)
+
+# fish length and barracuda weight will be columns in the data frame
+
+```
+
+#### Create a ggplot of length vs weight for the Giant Barracuda
+```{r}
+
+ggplot(data = barracuda_df, aes(x = fish_length, y = barracuda_weight)) +
+  geom_point() +
+  labs (x = "Barracuda Length (cm)",
+        y = "Barracuda Weight (g)",
+        title = "Giant Barracuda Sizes in Hawaiian Estuaries")
+
+```
+
+
+### **Last step - Upload to GitHub!**
